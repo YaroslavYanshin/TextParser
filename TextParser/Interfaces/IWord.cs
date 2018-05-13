@@ -13,7 +13,7 @@ namespace TextParser.Interfaces
 
         Symbol this[int index] { get; }
 
-        int Lenght { get; }
+        int Length { get; }
 
         bool IsConsonant(string[] vowels);
     }

@@ -9,6 +9,6 @@ namespace TextParser.Interfaces
 {
     interface IPunctuation : ISentenceItem
     {
-        Symbol Symbol { get; }
+        Symbol Symbols { get; }
     }
 }
