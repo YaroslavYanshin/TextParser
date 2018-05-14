@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TextParser.Interfaces;
+using TextParser.Separators;
 
 namespace TextParser.TextObjects
 {
@@ -105,4 +106,6 @@ namespace TextParser.TextObjects
             }
         }
     }
+
+
 }
