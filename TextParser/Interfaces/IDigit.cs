@@ -12,6 +12,6 @@ namespace TextParser.Interfaces
         Symbol [] Symbols { get; }
         Symbol this[int index] { get; }
 
-        int Lenght { get; }
+        int Length { get; }
     }
 }
