@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CollectionHelper.cs" />
     <Compile Include="Interfaces\IDigit.cs" />
     <Compile Include="Interfaces\IPunctuation.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
