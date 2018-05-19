@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using TextParser.Interfaces;
 
 namespace TextParser.Parser
 {
-    class Parser
+    public abstract class Parser
     {
+        public abstract Text Parse(StreamReader fileReader);
+        public abstract ISentence ParseSentence(string sentence);
     }
 }
