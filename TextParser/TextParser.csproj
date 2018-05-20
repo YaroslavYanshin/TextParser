@@ -47,6 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -85,6 +86,14 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Files\ReadText.txt" />
+    <Content Include="Files\ReplaceWordInSentence.txt" />
+    <Content Include="Files\Sentence.txt" />
+    <Content Include="Files\SentencesWithoutConsonants.txt" />
+    <Content Include="Files\Word.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

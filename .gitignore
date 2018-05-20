@@ -12,3 +12,7 @@ TextParser/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3
 .vs/TextParser/v15/Server/sqlite3/storage.ide-shm
 .vs/TextParser/v15/Server/sqlite3/storage.ide-wal
 TextParser/TextParser.csproj
+TextParser/bin/Debug/TextParser.pdb
+TextParser/bin/Debug/TextParser.exe.config
+TextParser/obj/Debug/TextParser.csproj.FileListAbsolute.txt
+TextParser/obj/Debug/TextParser.pdb

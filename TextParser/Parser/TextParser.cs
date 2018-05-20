@@ -18,9 +18,14 @@ namespace TextParser.Parser
 {
     public class TextParser: Parser
     {
-        private readonly Regex _lineToSentenceRegex = new Regex(@"(?<=[\.*!\?])\s+(?=[А-Я]|[A-Z])|(?=\W&([А-Я]|[A-Z]))", RegexOptions.Compiled);
+        private readonly Regex _lineTosentenceRegex = new Regex(
+            @"(?<=[\.*!\?])\s+(?=[А-Я]|[A-Z])|(?=\W&([А-Я]|[A-Z]))", RegexOptions.Compiled);
 
-        private readonly Regex _sentenceToWordsRegex = new Regex(@"(\W*)(\w+[\-|`]\w+)(\!\=|\>\=|\=\<|\/|\=\=|\?\!|\!\?|\.{3}|\W)|(\W*)(\w+|\d+)(\!\=|\>\=|\=\<|\/|\=\=|\?\!|\!\?|\.{3}|\W)|(.*)",RegexOptions.Compiled);
+        private readonly Regex _sentenceToWordsRegex =
+            new Regex(
+                @"(\W*)(\w+[\-|`]\w+)(\!\=|\>\=|\=\<|\/|\=\=|\?\!|\!\?|\.{3}|\W)|(\W*)(\w+|\d+)(\!\=|\>\=|\=\<|\/|\=\=|\?\!|\!\?|\.{3}|\W)|(.*)",
+                RegexOptions.Compiled);
+
 
         public override Text Parse(StreamReader fileReader)
         {
@@ -37,15 +42,18 @@ namespace TextParser.Parser
                     {
                         line = buffer + line;
 
-                        var sentences = _lineToSentenceRegex.Split(line)
-                            .Select(x => Regex.Replace(x.Trim(), @"\s+", @" "))
-                            .ToArray();
+                        var sentences =
+                            _lineTosentenceRegex.Split(line)
+                                .Select(x => Regex.Replace(x.Trim(), @"\s+", @" "))
+                                .ToArray();
 
-                        if (!PunctuationSeparator.EndPunctuationSeparator.Contains(sentences.Last().Last().ToString()))
+                        if (
+                            !PunctuationSeparator.EndPunctuationSeparator.Contains(
+                                sentences.Last().Last().ToString()))
                         {
                             buffer = sentences.Last();
-                            textResult.Sentences.AddRange(sentences.Select(x => x).Where(x => x != sentences.Last())
-                                .Select(ParseSentence));
+                            textResult.Sentences.AddRange(
+                                sentences.Select(x => x).Where(x => x != sentences.Last()).Select(ParseSentence));
                         }
                         else
                         {
@@ -73,20 +81,22 @@ namespace TextParser.Parser
         {
             var result = new Sentence();
 
-            Func<string,ISentenceItem> ToISentenceItem = item => (!PunctuationSeparator.AllSentenceSeparators.Contains(item) &&
-                !DigitSeparator.ArabicDigits.Contains(item[0].ToString()))
-                ? (ISentenceItem)new Word(item)
-                    : (DigitSeparator.ArabicDigits.Contains(item[0].ToString()))
-                        ? (ISentenceItem)new Digit(item)
+            Func<string, ISentenceItem> toISentenceItem =
+                item =>
+                    (!PunctuationSeparator.AllSentenceSeparators.Contains(item) &&
+                     !DigitSeparator.ArabicDigits.Contains(item[0].ToString()))
+                        ? (ISentenceItem)new Word(item)
+                        : (DigitSeparator.ArabicDigits.Contains(item[0].ToString()))
+                            ? (ISentenceItem)new Digit(item)
                             : new Punctuation(item);
 
             foreach (Match match in _sentenceToWordsRegex.Matches(sentence))
             {
-                for (int i = 0; i < match.Groups.Count; i++)
+                for (var i = 1; i < match.Groups.Count; i++)
                 {
                     if (match.Groups[i].Value.Trim() != "")
                     {
-                        result.Items.Add(ToISentenceItem(match.Groups[i].Value.Trim()));
+                        result.Items.Add(toISentenceItem(match.Groups[i].Value.Trim()));
                     }
                 }
             }
